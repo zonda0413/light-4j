@@ -1,0 +1,56 @@
+---
+tls:
+  # if the server is using self-signed certificate, this need to be false.
+  verifyHostname: false
+  # trust store contains certifictes that server needs. Enable if tls is used.
+  loadTrustStore: true
+  # trust store location can be specified here or system properties javax.net.ssl.trustStore and password javax.net.ssl.trustStorePassword
+  trustStore: client.truststore
+  # key store contains client key and it should be loaded if two-way ssl is uesed.
+  loadKeyStore: true
+  # key store location
+  keyStore: client.keystore
+oauth:
+  token:
+    tokenRenewBeforeExpired: 4000
+    expiredRefreshRetryDelay: 5000
+    earlyRefreshRetryDelay: 30000
+    server_url: http://localhost:7777
+    # you find oauth2 server from ether server_url or consul service discovery.
+    # serviceId: com.networknt.oauth2-token-1.0.0
+    authorization_code:
+      uri: "/oauth2/token"
+      client_id: test_client
+      client_secret: test_secret
+      redirect_uri: https://localhost:8080/authorization_code
+      scope:
+      - test.r
+      - test.w
+    client_credentials:
+      uri: "/oauth2/token"
+      client_id: test_client
+      client_secret: test_secret
+      scope:
+      - test.r
+      - test.w
+  key:
+    # if there is no service discovery and you have OAuth2 server deployed on VM
+    # and there is load balance in front of these service instances.
+    server_url: http://localhost:7777
+    # if you are using consul/zookeeper for service discovery
+    # serviceId: com.networknt.oauth2-key-1.0.0
+    uri: "/oauth2/key"
+    client_id: 6e9d1db3-2feb-4c1f-a5ad-9e93ae8ca59d
+  # de-ref by reference token to JWT token. It is separate service as it might be the external OAuth 2.0 provider.
+  deref:
+    # Token service server url, this might be different than the above token server url.
+    server_url: http://localhost:6753
+    # token service unique id for OAuth 2.0 provider. Need for service lookup/discovery.
+    serviceId: com.networknt.oauth2-token-1.0.0
+    # set to true if the oauth2 provider supports HTTP/2
+    enableHttp2: false
+    # the path for the key distribution endpoint
+    uri: "/oauth2/deref"
+    # client_id used to access key distribution service. It can be the same client_id with token service or not.
+    client_id: f7d42348-c647-4efb-a52d-4c5787421e72
+

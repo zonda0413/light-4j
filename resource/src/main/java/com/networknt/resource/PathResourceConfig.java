@@ -1,0 +1,73 @@
+/*
+ * Copyright (c) 2016 Network New Technologies Inc.
+ *
+ * Licensed under the Apache License, Version 2.0 (the "License");
+ * You may not use this file except in compliance with the License.
+ * You may obtain a copy of the License at
+ *
+ *      http://www.apache.org/licenses/LICENSE-2.0
+ *
+ * Unless required by applicable law or agreed to in writing, software
+ * distributed under the License is distributed on an "AS IS" BASIS,
+ * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+ * See the License for the specific language governing permissions and
+ * limitations under the License.
+ */
+
+package com.networknt.resource;
+
+import java.util.List;
+
+public class PathResourceConfig {
+    public static final String CONFIG_NAME = "path-resource";
+
+    String path;
+    String base;
+    boolean prefix;
+    int transferMinSize;
+    boolean directoryListingEnabled;
+
+    public PathResourceConfig() {
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
+    }
+
+    public String getBase() {
+        return base;
+    }
+
+    public void setBase(String base) {
+        this.base = base;
+    }
+
+    public boolean isPrefix() {
+        return prefix;
+    }
+
+    public void setPrefix(boolean prefix) {
+        this.prefix = prefix;
+    }
+
+    public int getTransferMinSize() {
+        return transferMinSize;
+    }
+
+    public void setTransferMinSize(int transferMinSize) {
+        this.transferMinSize = transferMinSize;
+    }
+
+    public boolean isDirectoryListingEnabled() {
+        return directoryListingEnabled;
+    }
+
+    public void setDirectoryListingEnabled(boolean directoryListingEnabled) {
+        this.directoryListingEnabled = directoryListingEnabled;
+    }
+
+}
